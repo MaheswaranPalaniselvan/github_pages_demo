@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RSA Key Generator | Secure & Private</title>
+    <meta name="description"
+        content="Generate secure RSA public and private keys locally in your browser. Copy or download keys directly.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <main class="container">
+        <header class="app-header">
+            <div class="logo">
+                <i class="fa-solid fa-shield-halved"></i>
+                <h1>RSA KeyGen</h1>
+            </div>
+            <p class="subtitle">Generate cryptographically secure RSA key pairs locally in your browser.</p>
+        </header>
+
+        <section class="controls-section glass-panel">
+            <div class="control-group">
+                <label for="key-size">Key Size (bits)</label>
+                <div class="select-wrapper">
+                    <select id="key-size">
+                        <option value="1024">1024-bit (Fast)</option>
+                        <option value="2048" selected>2048-bit (Standard)</option>
+                        <option value="4096">4096-bit (High Security)</option>
+                    </select>
+                    <i class="fa-solid fa-chevron-down arrow"></i>
+                </div>
+            </div>
+
+            <button id="generate-btn" class="btn btn-primary">
+                <span class="btn-text">Generate New Keys</span>
+                <span class="btn-icon"><i class="fa-solid fa-bolt"></i></span>
+                <div class="loader hidden"></div>
+            </button>
+        </section>
+
+        <section class="keys-display hidden" id="keys-container">
+            <!-- Public Key Card -->
+            <div class="key-card glass-panel">
+                <div class="card-header">
+                    <h2><i class="fa-solid fa-lock-open"></i> Public Key</h2>
+                    <div class="header-actions">
+                        <button class="btn-icon-only action-btn" data-target="public-key" data-action="copy"
+                            title="Copy to Clipboard">
+                            <i class="fa-regular fa-copy"></i>
+                        </button>
+                        <button class="btn-icon-only action-btn" data-target="public-key" data-action="download"
+                            data-filename="id_rsa.pub" title="Download .pub">
+                            <i class="fa-solid fa-download"></i>
+                        </button>
+                        <span class="badge public">Public</span>
+                    </div>
+                </div>
+                <div class="code-editor">
+                    <textarea id="public-key" readonly spellcheck="false" placeholder="Generating..."></textarea>
+                </div>
+            </div>
+
+            <!-- Private Key Card -->
+            <div class="key-card glass-panel">
+                <div class="card-header">
+                    <h2><i class="fa-solid fa-key"></i> Private Key</h2>
+                    <div class="header-actions">
+                        <button class="btn-icon-only action-btn" data-target="private-key" data-action="copy"
+                            title="Copy to Clipboard">
+                            <i class="fa-regular fa-copy"></i>
+                        </button>
+                        <button class="btn-icon-only action-btn" data-target="private-key" data-action="download"
+                            data-filename="id_rsa" title="Download">
+                            <i class="fa-solid fa-download"></i>
+                        </button>
+                        <span class="badge private">Private</span>
+                    </div>
+                </div>
+                <div class="warning-banner">
+                    <i class="fa-solid fa-triangle-exclamation"></i> Never share your private key.
+                </div>
+                <div class="code-editor">
+                    <textarea id="private-key" readonly spellcheck="false" placeholder="Generating..."></textarea>
+                </div>
+            </div>
+        </section>
+
+        <footer class="app-footer">
+            <p>Generated keys never leave your browser.</p>
+        </footer>
+    </main>
+
+    <div id="toast" class="toast hidden">Copied to clipboard!</div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
